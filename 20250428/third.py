@@ -1,8 +1,8 @@
-# # 산술연산자
-# result = 5 + 3
-# print(result) # 결과: 8
-# result = 3 + 2.5
-# print(result) # 결과: 5.5
+# 산술연산자
+result = 5 + 3
+print(result) # 결과: 8
+result = 3 + 2.5
+print(result) # 결과: 5.5
 
 # 나눗셈
 '''첫번째 나눗셈 연산자는 항상 실수(float) 형식으로 반환되며,
