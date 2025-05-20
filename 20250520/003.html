@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>table 태그 실습</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      caption {
+        caption-side: top;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <br>은 텍스트에서 줄바꿈을 위한 것이고
+    <tr>은 테이블의 행을 만들기 위한 구조적 요소 -->
+    <!-- <th> (table header) 태그는 테이블의 헤더 셀을 정의 / 기본적으로 굵은 글씨와 가운데 정렬 -->
+    <!-- <td> (tabel data) 태그는 테이블의 데이터 셀을 정의 -->
+    <table>
+      <!-- td*12 치면 자동완성 -->
+      <caption>
+        학생 성적표
+      </caption>
+      <tr>
+        <!-- ctrl + d 누르면 th가 적혀있는 모든 것을 드래그 후 같이 변경 -->
+        <th>학생</th>
+        <th>영어</th>
+        <th>수학</th>
+      </tr>
+      <tr>
+        <td>라이캣</td>
+        <td>100</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>로지</td>
+        <td>80</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>평균</td>
+        <td>90</td>
+        <td>90</td>
+      </tr>
+    </table>
+  </body>
+</html>

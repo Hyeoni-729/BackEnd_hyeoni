@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>text 정렬</title>
+    <style>
+      /* 텍스트, 이미지 같은 인라인 요소에 text 정렬을 쓴다 */
+      /* text-align : 가로정렬, vertical-aligh : 세로정렬 */
+      .left {
+        /* 왼쪽 정렬은 기본 값이기 때문에 바뀌지 X */
+        text-align: left;
+      }
+      .center {
+        /* 가운데 정렬 */
+        text-align: center;
+      }
+      .right {
+        /* 오른쪽 정렬 */
+        text-align: right;
+      }
+      .text {
+        background-color: lightcoral;
+      }
+      .badge {
+        font-size:0.5em;
+        background-color: pink;
+        /* 인라인 요소의 세로정렬 */
+        vertical-align: text-top;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span class="text">모두연 백엔드 부트캠프</span>
+      <span class="badge">NEW</span>
+    </div>
+    <p class="left">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quod animi,
+      accusantium voluptates nam assumenda laudantium incidunt! Molestias
+      voluptate quod obcaecati, rerum eos necessitatibus laboriosam, quos iusto
+      quam aliquam quibusdam?
+    </p>
+    <p class="center">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quod,
+      quasi excepturi doloribus assumenda eos ducimus tempora corporis
+      voluptatum velit, quae dolores dolorum alias repellat deleniti esse eaque
+      molestiae aut!
+    </p>
+    <p class="right">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga dolorem
+      exercitationem consequuntur vitae nesciunt sunt quibusdam molestiae nam
+      saepe alias cumque recusandae, amet explicabo tenetur nihil architecto
+      optio expedita quas!
+    </p>
+  </body>
+</html>

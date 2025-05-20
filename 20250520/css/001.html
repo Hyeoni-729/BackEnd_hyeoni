@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS first</title>
+    <!-- header : 선택자, {} : 선언블록, color : 속성, royalblue : 속성값, ; : 마침기호 -->
+    <style>
+      /* 내부 스타일 방식 */
+      header {
+        color: royalblue;
+        background-color: black;
+        width: 180px;
+      }
+      h1 {
+        color: hotpink;
+        background-color: lemonchiffon;
+        width: 180px;
+      }
+      h2 {
+        color: aqua;
+        background-color: crimson;
+        width: 180px;
+      }
+      p {
+        color: blueviolet;
+        background-color: cadetblue;
+        width: 180px;
+      }
+    </style>
+    <!-- 외부 스타일 방식 : 001.css에서 작성한 body태그를 link로 연결 -->
+    <link rel="stylesheet" href="./001.css" />
+  </head>
+  <!-- body태그는 html, head태그는 css -->
+  <body>
+    <header>이곳은 헤더 영역입니다</header>
+    <section>
+      <!-- <section style="background-color: yellow;"> : 인라인 방식 -->
+      <h1>hello</h1>
+      <h2>hello</h2>
+      <p>hello</p>
+    </section>
+  </body>
+</html>
