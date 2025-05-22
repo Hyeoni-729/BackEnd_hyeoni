@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>최신 CSS 기술</title>
+    <style>
+      :root {
+        /* css에서 변수는 --두개-하나 로 생성됨 */
+        --main-color: hotpink;
+        --main-padding: 10px;
+      }
+      p {
+        color: var(--main-color);
+      }
+      button {
+        color: var(--main-color);
+        padding: var(--main-padding);
+      }
+    </style>
+  </head>
+  <body>
+    <p class="element">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
+      quia, quaerat voluptatum expedita cupiditate odit, iusto eius ex autem, at
+      eum architecto veniam doloribus. Esse natus odio velit nulla laborum!
+    </p>
+    <button>lorem</button>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grid</title>
+    <style>
+      .container {
+        background-color: lightpink;
+        display: grid;
+        /* 행과 열의 개수가 아니라 크기를 지정해줄것 */
+        /* 각각 3개의 열을 만들어줌 */
+        /* fr : 비율 1fr 2fr 1fr -> 1:2:1 */
+        grid-template-columns: 1fr 2fr 1fr;
+        /* 행을 만들어줌 */
+        /* grid-template-rows: 150px 150px; */
+        grid-template-rows: repeat(2, 200px);
+      }
+      .item {
+        border: 1px solid gray;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+    </div>
+  </body>
+</html>

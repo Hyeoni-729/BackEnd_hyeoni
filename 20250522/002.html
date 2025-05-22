@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>z-index</title>
+    <!-- z-index : 맨 앞으로 가져오기 -->
+    <style>
+      .container {
+        position: relative;
+        height: 200px;
+      }
+      .box {
+        /* 위치가 지정된 요소에만 z축 순서를 결정할 수 있다 */
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .red {
+        background-color: rgba(255, 0, 0, 0.8);
+        top: 40px;
+        left: 40px;
+        /* z-index는 숫자가 클수록 젤 앞으로 온다 */
+        /* 부모는 자식앞으로 X, 자식은 음수 값을 줘서 부모 뒤로 O */
+        z-index: 3;
+      }
+      .green {
+        background-color: rgba(0, 255, 0, 0.8);
+        top: 80px;
+        left: 80px;
+        z-index: 2;
+      }
+      .blue {
+        background-color: rgba(0, 0, 255, 0.8);
+        top: 120px;
+        left: 120px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box red">Red Box</div>
+      <div class="box green">Green Box</div>
+      <div class="box blue">Blue Box</div>
+    </div>
+  </body>
+</html>
