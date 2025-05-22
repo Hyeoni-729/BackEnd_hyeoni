@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선택자 우선순위</title>
+    <style>
+      #yellow {
+        /* 100점짜리 선택자 */
+        color: yellow;
+      }
+      p {
+        /* 태그 선택자라서 1점짜리 선택자 */
+        color: red;
+      }
+      p {
+        /* 태그 선택자라서 1점짜리 선택자 */
+        color: blue;
+      }
+      .container p {
+        color: orange;
+        /* 10점 + 1점 */
+      }
+      div p {
+        color: pink;
+        /* div 1점 + p 태그 1점 = 2점 */
+      }
+      p {
+        /* 후자 우선의 원칙 때문에 p태그 color가 몇번이 와도 마지막 선택자로 적용된다 */
+        /* 태그 선택자라서 1점짜리 선택자 */
+        color: green;
+      }
+      .yellow-class {
+        /* 10점 짜리 선택자 */
+        color: yellowgreen;
+      }
+      .container p {
+        color: darkgoldenrod;
+      }
+    </style>
+  </head>
+  <body>
+    <p>안녕</p>
+    <p>안녕~</p>
+    <p class="yello-class" id="yellow">
+      해당 p태그는 id 선택자로 선택된 태그입니다
+    </p>
+    <p style="color: red">안녕하세요</p>
+    <div class="container">
+      <p style="color: darkcyan;">저는 중첩된 p태그입니다</p>
+      <!-- 인라인 스타일은 1000점이기 때문에 해당 스타일로 적용된다 -->
+    </div>
+  </body>
+</html>

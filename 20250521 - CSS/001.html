@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>행간/자간 조정하기</title>
+    <style>
+      html {
+        font-size: 20px;
+      }
+      /* line-height : 텍스트 줄 사이의 간격<행간>을 설정 */
+      .line-height {
+        /* line-height: 1 -> Default 값 */
+        line-height: 1.5;
+      }
+      /* letter-spacing : 글자 사이의 간격<자간>을 설정 */
+      .letter-spacing {
+        /* em : 요소의 배수 => 20px * 0.3em */
+        letter-spacing: 1.5em;
+        letter-spacing: 0.3em;
+        letter-spacing: -0.05em;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="letter-spacing">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt eligendi vitae quia quam eos velit minima exercitationem rem, doloribus libero, repudiandae ab obcaecati eum harum molestiae aut inventore provident. Perspiciatis.
+    </p>
+    <p class="line-height">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus tempore ratione ex velit iusto, quibusdam nam voluptas neque amet earum nihil provident reiciendis unde at repellendus. Nobis a est vero!
+    </p>
+  </body>
+</html>

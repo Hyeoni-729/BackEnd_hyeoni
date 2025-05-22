@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .wrapper {
+        background-color: #f5f5f5;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .box {
+        background-color: rosybrown;
+        color: white;
+        font-size: 36px;
+        font-weight: bold;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 2px;
+      }
+      /* 구조적 가상 선택자 */
+      /* 첫 번째 요소 선택 */
+      .box:first-child {
+        background-color: palevioletred;
+      }
+      /* 마지막 요소 선택 */
+      .box:last-child {
+        background-color: powderblue;
+      }
+      /* 중간 요소 선택 */
+      /* ex) 4번째거 선택 */
+      .box:nth-child(4) {
+        background-color: black;
+      }
+      /* 홀수(odd)번째 요소 선택 */
+      .box:nth-child(odd) {
+        color: burlywood;
+      }
+      /* 짝수(even)번째 요소 선택 */
+      .box:nth-child(even){
+        color: yellow;
+      }
+    </style>
+    <title>박스 레이아웃</title>
+  </head>
+  <body>
+    <main class="wrapper">
+      <section class="box">1</section>
+      <section class="box">2</section>
+      <section class="box">3</section>
+      <section class="box">4</section>
+      <section class="box">5</section>
+      <section class="box">6</section>
+      <section class="box">7</section>
+      <section class="box">8</section>
+    </main>
+  </body>
+</html>

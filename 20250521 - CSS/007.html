@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>박스 모델</title>
+    <style>
+      * {
+        /* box-sizing : 요소의 총 너비와 높이를 계산하는 방식을 지정 기본값은 content-box입니다. border-box로 설정하면 테두리와 패딩을 포함하여 요소의 총 너비와 높이를 계산 <제일 먼저 설정> */
+        box-sizing: border-box;
+      }
+      .box {
+        /* width: 500px; */
+        width: auto;
+        height: auto;
+        width: 200px;
+        height: 200px;
+        background-color: palegreen;
+        /* padding : 시계방향으로 여백 주기 */
+        /* padding: 30px 20px 10px 5px; */
+        /* 상하 10px, 좌우 20px */
+        padding: 10px 20px;
+        /* margin : border(테두리) 바깥 여백 */
+        /* margin: 50px; */
+        /* 
+        margin-bottom: 10px;
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 20px; */
+        text-align: center;
+        /* border : 요소의 테두리를 지정 */
+        border-top: 2px dashed red;
+        border-right: 3px dotted green;
+        border-bottom: 4px double blue;
+        border-left: 5px groove yellow;
+        border: 3px solid black;
+        /* border-radius : 모서리를 둥글게 만들 수 있다 */
+        border-radius: 8px;
+        border-radius: 10px;
+        /* 50% : 원으로 만들고 싶을때 */
+        border-radius: 50%;
+      }
+      .center {
+        /* margin: auto; */
+        /* 어떤 창이든 오른쪽에 딱 붙게 만들고 싶으면 (왼쪽은 right)*/
+        margin-left: auto;
+        /* CSS에서 요소를 가운데 정렬하는 가장 일반적인 방법 */
+        /* 브라우저가 사용 가능한 공간을 계산, 그 계산된 값을 자동으로 균등하게 분배한다 */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="box">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet iure,
+      aspernatur odio sit deserunt sequi placeat dicta, quis nemo cupiditate,
+      facere qui illo quas molestiae! Deserunt perferendis odio unde minus! 
+    </div> -->
+    <div class="box center">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi aliquam quod
+      modi facilis, ut architecto mollitia exercitationem quae cum unde quisquam
+      sequi, dolorum possimus dolores quasi voluptas, velit porro delectus?
+    </div>
+    <!-- span태그는 인라인요소라서 너비와 높이 조절 설정이 불가능 -->
+    <!-- <span class="box">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis
+      distinctio sit obcaecati consequatur. Deleniti cum beatae quas provident
+      quia doloribus nulla eligendi veniam amet cumque delectus laboriosam,
+      quisquam fugit animi.</span> -->
+  </body>
+</html>
