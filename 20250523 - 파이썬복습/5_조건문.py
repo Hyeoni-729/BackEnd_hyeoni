@@ -21,5 +21,5 @@ match text:
     print('hello')
   case 'world':
     print('world')
-  case _:
+  case _: # _는 와일드카드로, 어떤 값과도 일치한다는 것을 나타냄
     print('No Match') # No Match 출력
