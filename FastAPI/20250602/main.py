@@ -36,6 +36,11 @@ def create_item(item_id:int, item:Item):
 def read_items():
     return list(items.values())
 
+# 키 값들만 반환하기
+@app.get("/items-keys", response_model=List[int])
+def read_keys():
+    return list(items.keys())
+
 @app.get("/items/{item_id}", response_model=Item)
 def read_item(item_id:int):
     if item_id not in items:
