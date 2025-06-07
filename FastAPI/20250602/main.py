@@ -15,6 +15,8 @@ class Item(BaseModel):
         None  # 이 설명에는 빈 값이 들어갈 수도 있다 / 반드시 필요가 없다
     )
     price: float
+    # item의 기본값이 True
+    active: bool = True
 
 
 class ItemUpdate(BaseModel):
@@ -62,6 +64,7 @@ def update_item(item_id: int, item: ItemUpdate):
     if item_id not in items:
         raise HTTPException(status_code=404, detail="Item not found")
 
+    # 키 값을 통해 Item 타입의 value를 가져온다
     stored_item: Item = items[item_id]
     # 변경 전 출력
     print(
@@ -82,3 +85,33 @@ def update_item(item_id: int, item: ItemUpdate):
 
     items[item_id] = updated_item
     return updated_item
+
+
+# CRUD 중 Delete 기능
+## 보통 삭제된 데이터는 반환 하지 않아서 response_model이 필요없다.
+@app.delete("/items/{item_id}")
+def delete_item(item_id:int):
+    if item_id in items:
+        raise HTTPException(status_code=404, detail="Item not found")
+    # 완전히 제거 (hard delete)
+    items.pop(item_id)
+    # 복원 가능한 제거 (soft delete)로 바꿀려면
+
+
+'''실습
+1. put
+2. items/{item_id}?active={True or False}
+3. 활성화된 아이템은 다시활성화하지 못한다. (예외처리)
+4. 반환되는 모델은 Item'''
+@app.put("/items/{item_id}/active")
+# 쿼리스트링 문법을 쓰면 status:bool=True(status:bool도 가능 단, status_code 값 필수)기본값을 줘야한다
+def update_activate(item_id:int, status:bool):
+    if item_id not in items:
+        raise HTTPException(status_code=404, detail="Item not found")
+    # items 안에는 아무 타입의 값이 다 들어가기 때문에 타입 추론을 위해 item:Item(타입 힌팅)을 써줘야 한다
+    stored_item:Item = items[item_id]
+    if stored_item.active == status:
+        # 요청이 잘못 된것이니까 status_code는 400
+        raise HTTPException(status_code=400, detail="이미 활성화되었거나 비활성화된 아이템입니다.")
+    stored_item.active = status
+    return stored_item
