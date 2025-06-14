@@ -1,0 +1,7 @@
+# 경로 구분자 : 디렉토리 간 구분자 <Win:역슬래시\, Mac&Linux:슬래시/>
+
+1. 001-openai.py 파일 / 파일내용 작성 후
+2. pip install -U openai 설치
+* pip 보다는 python -m pip 를 쓰는게 더 낫다.
+3. python .\001-openai.py 입력 (현재 경로에 있는 001-openai.py를 실행해라)
+* "Hello! How can I assist you today?" 이렇게 출력 된다
