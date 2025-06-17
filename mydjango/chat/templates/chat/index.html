@@ -1,0 +1,43 @@
+```html
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>hello django</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <h1>hello django in html</h1>
+      <form action="/chat/messages/new/" method="POST" id="chat-message-form">
+        {% csrf_token %}
+        <input type="text" name="question" />
+        <input type="submit" value="질문" />
+      </form>
+      <script>
+        const formEl = document.querySelector("#chat-message-form");
+        formEl.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          const _formEl = event.target;
+          const formData = new FormData(_formEl);
+          console.log("요청을 보낼 주소 :", _formEl.action);
+          try {
+            const res = await fetch(_formEl.action, {
+              method: "POST",
+              body: formData,
+            });
+            console.log("res :", res);
+            const text = await res.text();
+            console.log("text:", text);
+          } catch (error) {
+            console.error(error);
+          }
+          console.log("#1");
+        });
+      </script>
+      &copy; 2025. heehyeon.
+    </main>
+  </body>
+</html>
