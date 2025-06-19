@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.http import Http404
 from chat.models import PuzzleRoom
-from chat.forms import PuzzleRoomForm
+from chat.forms import PuzzleRoomForm, PuzzleRoomEditForm
 
 # django view : http 요청을 받아 요청을 처리하는 함수
 # django에서는 클래스로 View를 만든다 -> 클래스 기반 뷰
@@ -115,9 +115,9 @@ def puzzleroom_edit(request: HttpRequest, id: int) -> HttpResponse:
     room = PuzzleRoom.objects.get(id=id)
 
     if request.method == "GET":
-        form = PuzzleRoomForm(instance=room)
+        form = PuzzleRoomEditForm(instance=room)
     else:
-        form = PuzzleRoomForm(instance=room, data=request.POST, files=request.FILES)
+        form = PuzzleRoomEditForm(instance=room, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect("/chat/puzzle/")
