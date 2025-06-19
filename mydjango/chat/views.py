@@ -78,3 +78,19 @@ def puzzleroom_list(request):
         template_name="chat/puzzleroom_list.html",
         context={"puzzleroom_list": qs},
     )
+
+def puzzleroom_play(request: HttpRequest, id:int) -> HttpResponse:
+    # puzzle room 테이블에 있는 모든 레코드를 가져올 준비
+    # qs = PuzzleRoom.objects.all()
+    
+    # id 값을 통해, 아래 값을 찾아서 할당
+    
+    room = PuzzleRoom.objects.get(id=id)
+    image_url = room.image_file.url
+    level = room.level
+
+    return render(
+        request,
+        template_name="chat/puzzle.html",
+        context={"image_url": image_url, "level": level,},
+    )

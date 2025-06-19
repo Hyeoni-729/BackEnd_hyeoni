@@ -32,16 +32,20 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # new app
     "chat",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # TODO: DEBUG 상황에서만 적용되도록 할 거예요.
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -124,3 +128,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 OPENAI_API_KEY = env.str("OPENAI_API_KEY", default=None)
 # 환경변수에 UPSTAGE_API_KEY가 있으면 반환하고, 없으면 대신 None 반환
 UPSTAGE_API_KEY = env.str("UPSTAGE_API_KEY", default=None)
+
+# django-debug-toolbar를 보여줄 아이피
+# - 장고 서버를 구동한 컴퓨터에서 직접 접속했을때만 DDT를 보여준다
+# - 다른 컴퓨터에서 접속했을 때는 DDT가 보여지지 않음
+INTERNAL_IPS = ["127.0.0.1",]

@@ -9,7 +9,11 @@
         <div>
             #{{ room.id }}.
             {{ room.level }}.
-            <img src="{{ room.image_file.url }}" style="width: 200px; "/>
+            {# 장고 주석 문법 #}
+            {# URL을 지정하는 거의 모든 곳에서는 같은 서버로 요청을 보냄, 그래서 http://서버주소:포트 를 지정할 필요 X #}
+            <a href="/chat/puzzle/{{ room.id }}">
+                <img src="{{ room.image_file.url }}" style="width: 150px; "/>
+            </a>
         </div>
     {% endfor %}
 </body>
