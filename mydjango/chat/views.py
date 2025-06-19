@@ -108,3 +108,26 @@ def puzzleroom_new(request: HttpRequest) -> HttpResponse:
     )
 
     # 2) POST 요청 : 유저가 서식에 값을 채우고, 전송 혹은 저장 버튼을 눌렀을 때 유저의 입력값 전송(반복 될 수 있음)
+
+
+def puzzleroom_edit(request: HttpRequest, id: int) -> HttpResponse:
+    # DB에서 수정 대상 조회
+    room = PuzzleRoom.objects.get(id=id)
+
+    if request.method == "GET":
+        form = PuzzleRoomForm(instance=room)
+    else:
+        form = PuzzleRoomForm(instance=room, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("/chat/puzzle/")
+        else:
+            pass
+
+    return render(
+        request,
+        "chat/puzzleroom_form.html",
+        {
+            "form": form,
+        },
+    )
