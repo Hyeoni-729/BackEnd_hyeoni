@@ -76,4 +76,5 @@ def puzzleroom_list(request):
     return render(
         request,
         template_name="chat/puzzleroom_list.html",
-        context={ "puzzleroom_list": qs })
+        context={"puzzleroom_list": qs},
+    )
