@@ -1,7 +1,8 @@
 from django.http import HttpResponse, HttpRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404
 from chat.models import PuzzleRoom
+from chat.forms import PuzzleRoomForm
 
 # django view : http 요청을 받아 요청을 처리하는 함수
 # django에서는 클래스로 View를 만든다 -> 클래스 기반 뷰
@@ -34,22 +35,6 @@ def chat_message_new(request: HttpRequest) -> HttpResponse:
     return HttpResponse(answer)
 
 
-"""def puzzle_room(request, name):
-    # 없는 데이터는 404 Page not found 응답을 하는 것이 맞다 Django에서는.
-    image_url = {
-        "mario":"static/chat/mario.jpg",
-        "toy":"static/chat/toy-story.jpg",
-    }[name]
-    return render(
-        # 이 템플릿 내의 코드는 모두 그냥 문자열
-        request, template_name="chat/puzzle.html",
-        # "image_url"이라는 이름으로 image_url 값을 전달, 대개 같은 이름으로 지정
-        context={"image_url" : image_url},
-    )"""
-
-# 또는
-
-
 def puzzle_room(request, name):
     try:
         image_url = {
@@ -79,12 +64,13 @@ def puzzleroom_list(request):
         context={"puzzleroom_list": qs},
     )
 
-def puzzleroom_play(request: HttpRequest, id:int) -> HttpResponse:
+
+def puzzleroom_play(request: HttpRequest, id: int) -> HttpResponse:
     # puzzle room 테이블에 있는 모든 레코드를 가져올 준비
     # qs = PuzzleRoom.objects.all()
-    
+
     # id 값을 통해, 아래 값을 찾아서 할당
-    
+
     room = PuzzleRoom.objects.get(id=id)
     image_url = room.image_file.url
     level = room.level
@@ -92,5 +78,33 @@ def puzzleroom_play(request: HttpRequest, id:int) -> HttpResponse:
     return render(
         request,
         template_name="chat/puzzle.html",
-        context={"image_url": image_url, "level": level,},
+        context={
+            "image_url": image_url,
+            "level": level,
+        },
     )
+
+
+# 1개의 PuzzleRoom 생성을 위해서, 최소 2번의 요청을 받을거다.
+def puzzleroom_new(request: HttpRequest) -> HttpResponse:
+
+    if request.method == "GET":
+        # 1) GET 요청 : 빈 입력 서식을 보여줘야 함
+        form = PuzzleRoomForm()
+    else:
+        form = PuzzleRoomForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("/chat/puzzle/")
+        else:
+            pass
+
+    return render(
+        request,
+        "chat/puzzleroom_form.html",
+        {
+            "form": form,
+        },
+    )
+
+    # 2) POST 요청 : 유저가 서식에 값을 채우고, 전송 혹은 저장 버튼을 눌렀을 때 유저의 입력값 전송(반복 될 수 있음)

@@ -11,4 +11,5 @@ urlpatterns = [
     path("puzzle/", views.puzzleroom_list),
     # 가급적이면 이 패턴은 타이트하게 지정 => 엉뚱하게 예상치 못한 url 패턴까지 잡아버리는 상황 방지
     path("puzzle/<int:id>/", views.puzzleroom_play),
+    path("puzzle/new/", views.puzzleroom_new),
 ]
