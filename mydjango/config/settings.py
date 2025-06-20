@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # new app
     "chat",
     "debug_toolbar",
+    "blog",
 ]
 
 MIDDLEWARE = [
