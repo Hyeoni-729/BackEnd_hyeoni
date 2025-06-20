@@ -1,5 +1,7 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
+from blog.models import Comment
+from blog.forms import CommentForm
 
 # 목록 조회
 post_List = ListView.as_view(
@@ -13,6 +15,9 @@ post_detail = DetailView.as_view(
     model=Post,
 )
 
-# def post_detail(request, pk):
-#     post = Post.objects.get(pk=pk)
-#     return render(request, "blog/post_detail.html", {"post":post})
+# 생성
+Comment_new = CreateView.as_view(
+    model=Comment,
+    form_class=CommentForm,
+    success_url="/blog/",
+)
