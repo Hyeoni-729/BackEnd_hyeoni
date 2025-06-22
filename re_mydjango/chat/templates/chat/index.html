@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>hello django</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1>hello django in html</h1>
+      <form hx-post="/chat/messages/new/" hx-target="#chat-response">
+        {% csrf_token %}
+        <input type="text" name="question" />
+        <input type="submit" value="질문" />
+      </form>
+      <div id="chat-response"></div>
+      &copy; 2025. heehyeon.
+    </main>
+  </body>
+</html>
