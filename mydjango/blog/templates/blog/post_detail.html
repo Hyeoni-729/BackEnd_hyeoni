@@ -1,19 +1,27 @@
 <!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8" />
+
+    <head>
+    <meta charset="UTF-8"/>
     <title>Blog</title>
-</head>
-<body>
-    {# 모델명이 길더라도 대문자는 소문자로 보인다 #}
-    {# 특정 템플릿 파일을 여러 view에서 재사용할 경우 #}
-    {# 그래서 CBV에서 일반적인 이름 object도 지원한다. #}
-    {# ListView => object_list 혹은 모델명소문자_list #}
-    {# DetailView => object 혹은 모델명소문자 #}
-    <h1>{{ object.title }}</h1>
+    </head>
 
-    {# 장고 템플릿 필터 #}
-    {{ post.content | linebreaks }}
+    <body>
+        {# 모델명이 길더라도 대문자는 소문자로 보인다 #}
+        {# 특정 템플릿 파일을 여러 view에서 재사용할 경우 #}
+        {# 그래서 CBV에서 일반적인 이름 object도 지원한다. #}
+        {# ListView => object_list 혹은 모델명소문자_list #}
+        {# DetailView => object 혹은 모델명소문자 #}
+        <h1>{{ object.title }}</h1>
 
-</body>
+        {# 장고 템플릿 필터 #}
+        {{ post.content | linebreaks }}
+
+        <hr>
+        {# <hr> : 구분선 태그 #}
+
+        <a href="/blog/{{ post.id }}/comments/new/">댓글 쓰기</a>
+
+    </body>
+
 </html>

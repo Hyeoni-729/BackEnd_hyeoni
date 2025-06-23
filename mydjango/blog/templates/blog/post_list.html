@@ -12,7 +12,10 @@
 
     {% for post in post_list %}
         <div>
-            {{ post }}
+            <a href="/blog/{{ post.id }}/">
+                {{ post.title }}
+            </a>
+
         </div>
     {% endfor %}
 

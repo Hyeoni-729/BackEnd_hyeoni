@@ -6,4 +6,4 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         # 전체 필드를 지정할 때는 [](리스트)를 쓰지 않음
-        fields = "__all__"
+        fields = ["content"]
