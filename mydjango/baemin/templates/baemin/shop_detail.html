@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ shop.name }}
+      - 상세정보</title>
+    <style>
+      body {
+        padding: 40px;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #fefefe;
+      }
+
+      .shop-detail {
+        max-width: 600px;
+        margin: auto;
+        text-align: center;
+      }
+
+      img {
+        width: 250px;
+        height: 250px;
+        border-radius: 20px;
+        object-fit: cover;
+      }
+
+      h2 {
+        margin-top: 20px;
+        font-size: 2rem;
+        color: #e91e63;
+      }
+
+      p.description {
+        margin-top: 20px;
+        font-size: 1.1rem;
+        color: #444;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="shop-detail">
+      <img src="{{ shop.photo.url }}" alt="{{ shop.name }}">
+      <h2>{{ shop.name }}</h2>
+      <p class="description">{{ shop.description }}</p>
+    </div>
+    <a href="/baemin/{{ shop.pk }}/reviews/new/">댓글 쓰기</a>
+
+    <h3>댓글 목록</h3>
+
+    {% for review in review_list %}
+      <div>
+        {{ review.content }}
+        ({{ review.rating }})
+      </div>
+      {% empty %}
+      <div>등록된 리뷰가 없습니다. 😥
+      </div>
+    {% endfor %}
+
+  </body>
+
+</html>
