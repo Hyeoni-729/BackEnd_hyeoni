@@ -33,7 +33,7 @@ def shop_detail(request, pk):
 
 
 def review_new(request, shop_pk):
-    shop = get_object_or_404(Shop, pk=shop_pk)
+    shop = Shop.objects.get(pk=shop_pk)
 
     if request.method == "GET":
         form = ReviewForm()
@@ -41,9 +41,9 @@ def review_new(request, shop_pk):
     else:
         form = ReviewForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            review = form.save(commit=False)
-            review.shop = shop
-            review.save()
+            unsaved_review = form.save(commit=False)
+            unsaved_review.shop = shop
+            unsaved_review.save()
             messages.success(request, "댓글이 성공적으로 등록되었습니다!")
             shop_url = f"/baemin/{shop.pk}/"
             return redirect(shop_url)
