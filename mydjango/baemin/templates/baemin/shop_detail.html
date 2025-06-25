@@ -1,49 +1,11 @@
-<!DOCTYPE html>
-<html lang="ko">
+{% extends "baemin/base.html" %} 
+{% load django_bootstrap5 %}
+{% comment %} 장고의 상속 {% endcomment %}
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-    <title>{{ shop.name }}
-      - 상세정보</title>
-    <style>
-      body {
-        padding: 40px;
-        font-family: 'Segoe UI', sans-serif;
-        background-color: #fefefe;
-      }
-
-      .shop-detail {
-        max-width: 600px;
-        margin: auto;
-        text-align: center;
-      }
-
-      img {
-        width: 250px;
-        height: 250px;
-        border-radius: 20px;
-        object-fit: cover;
-      }
-
-      h2 {
-        margin-top: 20px;
-        font-size: 2rem;
-        color: #e91e63;
-      }
-
-      p.description {
-        margin-top: 20px;
-        font-size: 1.1rem;
-        color: #444;
-        line-height: 1.6;
-      }
-    </style>
-  </head>
-
-  <body>
+{% comment %} 자식 템플릿은 block을 재정의하지 않은 코드는 무시된다. {% endcomment %}
+{% block content  %}
     <div class="shop-detail">
-      <img src="{{ shop.photo.url }}" alt="{{ shop.name }}">
+      <img src="{{ shop.photo.url }}" alt="{{ shop.name }} width="200px" height="200px"">
       <h2>{{ shop.name }}</h2>
       <p class="description">{{ shop.description }}</p>
     </div>
@@ -60,7 +22,4 @@
       <div>등록된 리뷰가 없습니다. 😥
       </div>
     {% endfor %}
-
-  </body>
-
-</html>
+{% endblock  %}

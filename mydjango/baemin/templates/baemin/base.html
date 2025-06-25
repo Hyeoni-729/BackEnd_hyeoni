@@ -1,0 +1,28 @@
+{% load django_bootstrap5 %}
+
+<!doctype html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+
+    {# bootstrap_css #}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cerulean/bootstrap.min.css" integrity="sha384-3fdgwJw17Bi87e1QQ4fsLn4rUFqWw//KU0g8TvV6quvahISRewev6/EocKNuJmEw" crossorigin="anonymous">
+    {% bootstrap_javascript %}
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>배민1</h1>
+      {% comment %} block / endblock은 자식 템플릿이 비집고 들어올 수 있는 공간. 자식 템플릿은 부모 템플릿의 구성을 변경 할 수 없다. 자식 템플릿의 부모 템플릿의 block 영역만 재정의할 수 있다.
+      {% endcomment %}
+      
+      {% block content %}{% endblock  %}
+      <hr>
+      &copy; 2025. hee
+    </div>
+  </body>
+
+</html>
