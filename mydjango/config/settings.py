@@ -18,11 +18,7 @@ SECRET_KEY = "django-insecure-wizjcid26zp@ve@4as^m)717&sgr649mp=gurejjr%#+tpicl5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "192.168.219.100",
-    ".ngrok-free.app"
-]
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["127.0.0.1"],)
 
 
 # Application definition
@@ -34,9 +30,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # new install
+    "debug_toolbar",
+    "django_bootstrap5",
     # new app
     "chat",
-    "debug_toolbar",
     "blog",
     "baemin",
 ]

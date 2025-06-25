@@ -1,10 +1,14 @@
 <!DOCTYPE html>
+{% comment %} {# Load the tag library #} : 파이썬의 import와 같은 기능 {% endcomment %}
+{% load django_bootstrap5 %}
 <html lang="ko">
 
   <head>
     <meta charset="UTF-8">
     <title>댓글 작성</title>
-    <style>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% comment %} <style>
       body {
         padding: 40px;
         font-family: 'Segoe UI', sans-serif;
@@ -94,7 +98,7 @@
         font-size: 0.9rem;
         margin-top: 5px;
       }
-    </style>
+    </style> {% endcomment %}
   </head>
 
   <body>
@@ -103,11 +107,12 @@
 
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        {% bootstrap_form form %}
 
-        {{ form.errors }}
+        {% comment %} {{ form.errors }}
 
         <div class="form-group">
-          <label for="{{ form.content.id_for_label }}">댓글 내용:</label>
+          <label for="{{ form.content.id_for_label }}">댓글 내용</label>
           {{ form.content }}
           {% if form.content.errors %}
             <ul class="error-list">
@@ -116,9 +121,9 @@
               {% endfor %}
             </ul>
           {% endif %}
-
+          <label for="{{ form.content.id_for_label }}">Rating</label>
           {{ form.rating }}
-        </div>
+        </div> {% endcomment %}
 
         <button type="submit" class="submit-btn">댓글 등록</button>
       </form>
