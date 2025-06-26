@@ -17,6 +17,10 @@
       <div>
         {{ review.content }}
         ({{ review.rating }})
+        <a href="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/edit/">
+          Edit
+        </a>
+        Delete
       </div>
       {% empty %}
       <div>등록된 리뷰가 없습니다. 😥

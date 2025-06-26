@@ -50,7 +50,7 @@ def review_new(request, shop_pk):
             unsaved_review = form.save(commit=False)
             unsaved_review.shop = shop
             unsaved_review.save()
-            messages.success(request, "댓글이 성공적으로 등록되었습니다!")
+            messages.success(request, "댓글이 성공적으로 등록되었습니다 🥰")
             shop_url = f"/baemin/{shop.pk}/"
             return redirect(shop_url)
 
@@ -58,4 +58,24 @@ def review_new(request, shop_pk):
         request,
         template_name="baemin/review_form.html",
         context={"form": form, "shop": shop},
+    )
+
+def review_edit(request, shop_pk, pk):
+    review = Review.objects.get(pk=pk)
+
+    if request.method == "GET":
+        form = ReviewForm(instance=review)
+
+    else:
+        form = ReviewForm(instance=review, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "리뷰가 성공적으로 수정되었습니다 😉")
+            shop_url = f"/baemin/{shop_pk}/"
+            return redirect(shop_url)
+
+    return render(
+        request,
+        template_name="baemin/review_form.html",
+        context={"form": form},
     )
