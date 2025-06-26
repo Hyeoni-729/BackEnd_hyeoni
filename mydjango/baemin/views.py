@@ -1,7 +1,7 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shop, Review
 from .forms import ReviewForm
-from django.contrib import messages
 
 
 def shop_list(request):
