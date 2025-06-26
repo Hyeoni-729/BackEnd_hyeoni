@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from debug_toolbar.toolbar import debug_toolbar_urls
+from django.shortcuts import redirect
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -10,6 +11,7 @@ urlpatterns = [
     path("chat/", include("chat.urls")),
     path("blog/", include('blog.urls')),
     path("baemin/", include('baemin.urls')),
+    path("", lambda request: redirect("/baemin/")),
 ]
 
 # 유저가 업로드한 파일을 서빙하는 View 설정 (View <- 장고 개발서버에서 제공)
