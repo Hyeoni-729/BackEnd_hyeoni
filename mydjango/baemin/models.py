@@ -47,3 +47,8 @@ class Review(models.Model):
         ],
         help_text="점수를 고르세요"
     ) # 별점입력(적은 단위 숫자)
+
+    # Review 쿼리셋에 대한 디폴트 정렬
+    # Review 쿼리셋에서 order_by 를 지정하지 않으면, 자동으로 적용
+    class Meta:
+        ordering = ["-id"]
