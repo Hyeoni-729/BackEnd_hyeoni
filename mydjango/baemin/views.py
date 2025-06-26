@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shop, Review
 from .forms import ReviewForm
+# from django.http import Http404
 
 
 def shop_list(request):
@@ -18,7 +19,8 @@ def shop_list(request):
 
 
 def shop_detail(request, pk):
-    shop = Shop.objects.get(pk=pk)
+    # shop = Shop.objects.get(pk=pk)
+    shop = get_object_or_404(Shop, pk=pk)
 
     # 전체(모든 Shop) 리뷰 데이터를 가져올 준비.
     review_qs = Review.objects.all()
@@ -39,7 +41,8 @@ def shop_detail(request, pk):
 
 
 def review_new(request, shop_pk):
-    shop = Shop.objects.get(pk=shop_pk)
+    # shop = Shop.objects.get(pk=shop_pk)
+    shop = get_object_or_404(Shop, pk=shop_pk)
 
     if request.method == "GET":
         form = ReviewForm()
@@ -61,7 +64,14 @@ def review_new(request, shop_pk):
     )
 
 def review_edit(request, shop_pk, pk):
-    review = Review.objects.get(pk=pk)
+
+    # # 지정 조건의 레코드가 DB에 없을 때 Review.DoesNotExit 오류 발생
+    # try:
+    #     review = Review.objects.get(pk=pk) # 지정 조건의 레코드는 DB가 1개 존재.
+    # except Review.DoesNotExist:
+    #     raise Http404
+
+    review = get_object_or_404(Review, pk=pk)
 
     if request.method == "GET":
         form = ReviewForm(instance=review)
