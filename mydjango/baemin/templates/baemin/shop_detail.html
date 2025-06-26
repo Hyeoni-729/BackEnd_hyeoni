@@ -18,9 +18,11 @@
         {{ review.content }}
         ({{ review.rating }})
         <a href="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/edit/">
-          Edit
+          수정📌
         </a>
-        Delete
+        <a href="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/delete">
+          삭제📥
+        </a>
       </div>
       {% empty %}
       <div>등록된 리뷰가 없습니다. 😥

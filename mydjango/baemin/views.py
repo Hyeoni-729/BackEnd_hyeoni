@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shop, Review
 from .forms import ReviewForm
-# from django.http import Http404
+from django.http import HttpRequest, HttpResponse
 
 
 def shop_list(request):
@@ -80,7 +80,7 @@ def review_edit(request, shop_pk, pk):
         form = ReviewForm(instance=review, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, "리뷰가 성공적으로 수정되었습니다 😉")
+            messages.success(request, "댓글이 성공적으로 수정되었습니다 😉")
             shop_url = f"/baemin/{shop_pk}/"
             return redirect(shop_url)
 
@@ -89,3 +89,15 @@ def review_edit(request, shop_pk, pk):
         template_name="baemin/review_form.html",
         context={"form": form},
     )
+
+def review_delete(request:HttpRequest, shop_pk:int, pk:int) -> HttpResponse:
+    if request.method == "GET":
+        return render(request, template_name="baemin/review_confirm_delete.html")
+    
+    review = get_object_or_404(Review, pk=pk) # 삭제할 리뷰 검색
+    review.delete() # DB에서 호출 즉시 삭제
+
+    messages.success(request, "댓글이 성공적으로 삭제되었습니다 😂")
+
+    shop_url = f"/baemin/{shop_pk}/"
+    return redirect(shop_url)
