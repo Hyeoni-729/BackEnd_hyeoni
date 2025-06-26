@@ -4,9 +4,7 @@
 
 {% comment %} 자식 템플릿은 block을 재정의하지 않은 코드는 무시된다. {% endcomment %}
 {% block content  %}
-<div class="review-form-container">
-  <h2>댓글 작성</h2>
-  
+
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
@@ -14,5 +12,5 @@
     <button type="submit" class="submit-btn">댓글 등록</button>
   </form>
   
-</div>
+
 {% endblock  %}
