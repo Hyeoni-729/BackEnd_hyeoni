@@ -25,6 +25,12 @@ def shop_detail(request, pk):
     # 특정 shop의 리뷰 데이터를 가져올 준비 (가져올 범위가 좁혀집니다.)
     review_qs = review_qs.filter(shop=shop)
 
+    # 정렬을 지정하지 않아도 출력은 된다.
+    # 저장된 순서대로 조회된다. 조회할 때마다 다른 순서로 조회가 된다.
+    # review_qs = review_qs.order_by("id") # id 필드 오름차순
+    review_qs = review_qs.order_by("-id") # id 필드 내림차순(역순)
+
+
     return render(
         request,
         template_name="baemin/shop_detail.html",
