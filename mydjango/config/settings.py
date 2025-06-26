@@ -16,7 +16,9 @@ env.read_env(ENV_PATH, overwrite=True)
 SECRET_KEY = "django-insecure-wizjcid26zp@ve@4as^m)717&sgr649mp=gurejjr%#+tpicl5"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = False # 사용자 모드
+# DEBUG = True # 개발자 모드
+DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["127.0.0.1"],)
 
@@ -56,7 +58,9 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
