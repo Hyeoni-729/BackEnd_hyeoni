@@ -8,6 +8,17 @@ from django.http import HttpRequest, HttpResponse
 def shop_list(request):
     # DB에서 baemin_shop 테이블의 모든 레코드를 조회할 준비
     qs = Shop.objects.all()
+    # qs = qs.order_by('-id') # 매번 정렬을 이렇게 지정해줄수 있지만, DB입장에서는 매우 부담
+    # qs = qs[0:5] # 처음 5개 (리스트/문자열의 슬라이싱 문법과 동일)
+    # qs = qs[5:10] # 2페이지
+    # qs = qs[10:15] # 3페이지
+
+    page = 1
+    paginate_by = 5 # 1페이지를 몇 개씩 끊는지 설정
+
+    start_index = (page - 1) * paginate_by
+    end_index = page * paginate_by
+    qs = qs[start_index:end_index]
 
     return render(
         request,

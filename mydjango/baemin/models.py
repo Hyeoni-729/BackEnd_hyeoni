@@ -9,6 +9,9 @@ class Shop(models.Model):
     # photo = models.FileField # FileField : 모든 파일 포맷 저장 가능
     photo = models.ImageField() # ImageField : 이미지만 받는다
 
+    class Meta:
+        ordering = ["-id"]
+
 # 장고의 유효성 검사 함수 : 항상 1개의 인자만 받는다.
 # 그 값이 정해진 규칙에서 벗어날 때, ValidationError 예외 발생
 # 정해진 규칙에 부합이 될 때, Nothing to do : 그냥 함수 종료. 반환값 필요 없음
