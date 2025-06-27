@@ -6,17 +6,13 @@ from django.http import HttpRequest, HttpResponse
 
 
 def shop_list(request):
-    # DB에서 baemin_shop 테이블의 모든 레코드를 조회할 준비
     qs = Shop.objects.all()
-    # qs = qs.order_by('-id') # 매번 정렬을 이렇게 지정해줄수 있지만, DB입장에서는 매우 부담
-    # qs = qs[0:5] # 처음 5개 (리스트/문자열의 슬라이싱 문법과 동일)
-    # qs = qs[5:10] # 2페이지
-    # qs = qs[10:15] # 3페이지
 
-    page = 1
+    # page = 1
+    page = int(request.GET.get("page", 1)) # 쿼리스트링 값은 기본적으로 문자열 타입
     paginate_by = 5 # 1페이지를 몇 개씩 끊는지 설정
 
-    start_index = (page - 1) * paginate_by
+    start_index = (page - 1) * paginate_by # 여기서 TypeError 오류 발생
     end_index = page * paginate_by
     qs = qs[start_index:end_index]
 
@@ -37,13 +33,6 @@ def shop_detail(request, pk):
     review_qs = Review.objects.all()
     # 특정 shop의 리뷰 데이터를 가져올 준비 (가져올 범위가 좁혀집니다.)
     review_qs = review_qs.filter(shop=shop)
-
-    # 정렬을 지정하지 않아도 출력은 된다.
-    # 저장된 순서대로 조회된다. 조회할 때마다 다른 순서로 조회가 된다.
-    # review_qs = review_qs.order_by("id") # id 필드 오름차순
-    # review_qs = review_qs.order_by("-id") # id 필드 내림차순(역순)
-
-
     return render(
         request,
         template_name="baemin/shop_detail.html",
@@ -75,13 +64,6 @@ def review_new(request, shop_pk):
     )
 
 def review_edit(request, shop_pk, pk):
-
-    # # 지정 조건의 레코드가 DB에 없을 때 Review.DoesNotExit 오류 발생
-    # try:
-    #     review = Review.objects.get(pk=pk) # 지정 조건의 레코드는 DB가 1개 존재.
-    # except Review.DoesNotExist:
-    #     raise Http404
-
     review = get_object_or_404(Review, pk=pk)
 
     if request.method == "GET":
