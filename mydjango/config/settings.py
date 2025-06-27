@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "chat",
     "blog",
     "baemin",
+    "accounts",
 ]
 
 MIDDLEWARE = [
