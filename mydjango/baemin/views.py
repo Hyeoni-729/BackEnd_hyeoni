@@ -3,25 +3,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shop, Review
 from .forms import ReviewForm
 from django.http import HttpRequest, HttpResponse
+from django.views.generic import ListView
 
-
-def shop_list(request):
-    qs = Shop.objects.all()
-
-    # page = 1
-    page = int(request.GET.get("page", 1)) # 쿼리스트링 값은 기본적으로 문자열 타입
-    paginate_by = 5 # 1페이지를 몇 개씩 끊는지 설정
-
-    start_index = (page - 1) * paginate_by # 여기서 TypeError 오류 발생
-    end_index = page * paginate_by
-    qs = qs[start_index:end_index]
-
-    return render(
-        request,
-        template_name="baemin/shop_list.html",
-        context={
-            "shop_list": qs,
-        },
+# 리스트 목록 구현을 위한 최소한의 ListView 클래스
+shop_list = ListView.as_view(
+    model=Shop,
+    paginate_by=5,
     )
 
 
