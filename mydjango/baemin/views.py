@@ -5,11 +5,32 @@ from .forms import ReviewForm
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import ListView
 
-# 리스트 목록 구현을 위한 최소한의 ListView 클래스
-shop_list = ListView.as_view(
-    model=Shop,
-    paginate_by=5,
-    )
+
+class ShopListView(ListView):
+    model=Shop # 콤마 쓰면 리스트로 바뀌기 때문에 쓰면 안됨
+    paginate_by=5
+    # template_name="baemin/shop_list.html" # 디폴트 설정
+    
+    # 요청에 따라, 사용하는 템플릿을 변경해보자.
+    # 부모 클래스의 get_template_names 메서드를 재정의 (오버라이드)
+    def get_template_names(self):
+        # 클래스 기반 뷰 현재 요청 객체 : self.request
+        if "naked" in self.request.GET: # dict에서 해당 Key가 사전에 있는지만 확인
+            # 무한 스크롤에서 다음 페이지 내용이라면?
+            return "baemin/_shop_list.html"
+
+
+        # 아래의 코드는 원래 메서드의 기본 동작을 수행
+        return super().get_template_names()
+    
+
+# # 리스트 목록 구현을 위한 최소한의 ListView 클래스
+# shop_list = ListView.as_view(
+#     model=Shop,
+#     paginate_by=5,
+#     )
+
+shop_list = ShopListView.as_view()
 
 
 def shop_detail(request, pk):

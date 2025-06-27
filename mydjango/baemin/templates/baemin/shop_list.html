@@ -1,22 +1,5 @@
-{% extends "baemin/base.html" %} 
-{% load django_bootstrap5 %}
-{% comment %} 장고의 상속 {% endcomment %}
+{% extends "baemin/base.html" %}
 
-{% comment %} 자식 템플릿은 block을 재정의하지 않은 코드는 무시된다. {% endcomment %}
-{% block content  %}
-    <h1>💍 Shop List 💍</h1>
-    <div class="shop-container">
-      {% for shop in shop_list %}
-        <div class="shop-item">
-          <img src="{{ shop.photo.url }}" alt="" width="200px" height="200px">
-          <br>
-          <a href="/baemin/{{ shop.pk }}">
-            {{shop.name}}
-          </a>
-        </div>
-      {% endfor %}
-
-      <hr>
-      {% bootstrap_pagination page_obj %}
-    </div>
-{% endblock  %}
+{% block content %}
+    {% include "baemin/_shop_list.html" %}
+{% endblock %}

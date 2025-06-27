@@ -1,0 +1,29 @@
+{# 파일명 앞에 언더바를 붙인 이유 : 다른 템플릿에 의해 사용될 템플릿이라는거를 구별하기 위해 #}
+
+<h1>💍 Shop List 💍</h1>
+
+{# <h2>{{ request.GET.get("page") }}</h2> : 장고 템플릿은 이런 문법을 지원하지 않는다. / 템플릿 문법 자체에 자유도를 많이 낮췄기때문에. / 장고는 스파게티 코드가 생성된 가능성을 거의 없애버린다. / 템플릿 코드에서 다양한 로직(함수/클래스 등)을 정의하고 활용하고싶어짐 -> 코드에서 냄새가 난다. / 장고는 모델(핵심)과 뷰 단에서 필요한 로직을 정의, 템플릿에서는 단순히 보여주는 것에만 집중하기를 권장. / 그래서 밑에 코드처럼 작성해야함.#}
+<h2>Page :
+  {{ request.GET.page }}</h2>
+
+<div class="shop-container">
+  {% for shop in shop_list %}
+    <div class="shop-item">
+      <img src="{{ shop.photo.url }}" alt="" width="200px" height="200px">
+      <br>
+      <a href="/baemin/{{ shop.pk }}">
+        {{shop.name}}
+      </a>
+    </div>
+  {% endfor %}
+
+  {# HTMX 요청 여부를 인지하는 다른 방법이 있지만, 보다 직관적인 방법을 써보자. #}
+  {% comment %} <a hx-get="?page=2" hx-trigger="click" hx-target="this" hx-swap="outerHTML">
+    2페이지
+  </a> {% endcomment %}
+  {# 2페이지 요청시에 무한 스크롤에 사용되는 요청임을 구별하기 위해 요청url에 naked=1 쿼리파라메타를 추가 #}
+  <a hx-get="?page=2&naked=1" hx-trigger="click" hx-target="this" hx-swap="outerHTML">
+    2페이지
+  </a>
+
+</div>
