@@ -22,8 +22,15 @@
     2페이지
   </a> {% endcomment %}
   {# 2페이지 요청시에 무한 스크롤에 사용되는 요청임을 구별하기 위해 요청url에 naked=1 쿼리파라메타를 추가 #}
-  <a hx-get="?page=2&naked=1" hx-trigger="click" hx-target="this" hx-swap="outerHTML">
-    2페이지
-  </a>
+  {# 다음 페이지 링크 구현 #}
+  {% if page_obj.has_next %}
+    <a hx-get="?page={{ page_obj.next_page_number }}&naked=1" hx-trigger="revealed" hx-target="this" hx-swap="outerHTML">
+      loading...😶
+    </a>
+  {% else %}
+    <div class="alert alert-info">
+      끝까지 다 보셨습니다.
+    </div>
+  {% endif %}
 
 </div>
