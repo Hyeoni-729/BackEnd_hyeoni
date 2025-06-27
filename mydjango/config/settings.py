@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # new install
     "debug_toolbar",
     "django_bootstrap5",
+    "django_extensions",
     # new app
     "chat",
     "blog",

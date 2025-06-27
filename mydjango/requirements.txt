@@ -3,3 +3,4 @@ django-environ
 pyhub-llm[all]
 django-debug-toolbar
 django-bootstrap5
+django-extensions
