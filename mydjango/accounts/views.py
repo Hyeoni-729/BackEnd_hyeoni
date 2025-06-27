@@ -1,5 +1,15 @@
 from django.shortcuts import render, redirect
 from .forms import SignupForm
+from django.contrib.auth.views import LoginView, LogoutView
+
+login = LoginView.as_view(
+    template_name = "accounts/login_form.html",
+)
+
+logout = LogoutView.as_view()
+
+def profile(request):
+    return render(request, "accounts/profile.html")
 
 def signup(request):
     if request.method == "GET":

@@ -47,7 +47,7 @@ def shop_detail(request, pk):
         context={"shop": shop, "review_list": review_qs},
     )
 
-
+# @login_required : 로그인 상황이 아니면, 자동으로 로그인 페이지로 보낸다.
 def review_new(request, shop_pk):
     # shop = Shop.objects.get(pk=shop_pk)
     shop = get_object_or_404(Shop, pk=shop_pk)
